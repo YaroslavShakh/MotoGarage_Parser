@@ -1,0 +1,6 @@
+
+ident = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+
+file = { SOI ~ ident ~ EOI }

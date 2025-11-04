@@ -1,0 +1,21 @@
+[package]
+name = "MotoGarage_parser"
+version = "0.1.0"
+edition = "2024"
+description = "Парсер та інтерпретатор для MotoGarage DSL, мови для керування колекціями мотоциклів."
+
+[dependencies]
+pest = "2.8.3"
+pest_derive = "2.8.3"
+anyhow = "1.0"
+
+[lib]
+name = "motogarage_parser"
+path = "src/lib.rs"
+
+[[bin]]
+name = "moto"
+path = "src/main.rs"
+
+[dev-dependencies]
+assert_matches = "1.5"
