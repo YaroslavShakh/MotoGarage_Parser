@@ -1,6 +1,67 @@
+/// Ignores whitespace, tabs, and newlines
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" | line_comment }
 
+/// Ignores single-line comments (from // to the end of the line)
+line_comment = _{ "//" ~ (!"\n" ~ ANY)* }
+
+// --- Top-Level Rules ---
+
+/// A file is the start of input (SOI), followed by zero or more commands,
+/// and ending with the end of input (EOI).
+file = { SOI ~ (command)* ~ EOI }
+
+/// A command is either a definition (DEFINE) or a query (GET).
+command = { definition | query_get | query_count }
+
+// --- 1. Rules for Definitions (DEFINE) ---
+
+/// Defines a new bike.
+/// Example: DEFINE bike "Honda CBR" { year: 2021 }
+definition = { "DEFINE" ~ "bike" ~ string_literal ~ "{" ~ properties ~ "}" }
+
+/// A list of one or more properties, separated by commas.
+properties = { property ~ ("," ~ property)* }
+
+/// A single property in the format 'key: value'.
+/// Example: year: 2021
+property = { ident ~ ":" ~ value }
+
+// --- 2. Rules for Queries (GET) ---                 
+
+/// Query 'GET BIKES', which can have additional clause 'WHERE'.
+query_get = { "GET" ~ "BIKES" ~ (where_clause)? }
+
+/// Query 'COUNT BIKES', which can have additional clause 'WHERE'.
+query_count = { "COUNT" ~ "BIKES" ~ (where_clause)? }
+
+/// additional clause'WHERE', which contains one condition.
+where_clause = { "WHERE" ~ condition }
+
+/// A filter condition 'key <operator> value'.
+/// Example: type = sport
+condition = { ident ~ operator ~ value }
+
+/// A comparison operator.
+operator = { "=" | ">" | "<" }
+
+// --- Basic Building Blocks (Atoms) ---
+
+/// An identifier (field name or type).
+/// Starts with a letter or '_', followed by letters, digits, or '_'.
 ident = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
-WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+/// A value, which can be a number with a unit (cc), just a number,
+/// a quoted string, or an identifier (e.g., 'sport').
+value = { number_with_unit | number | string_literal | ident }
 
-file = { SOI ~ ident ~ EOI }
+/// A text string in double quotes.
+/// Example: "Honda CBR600RR"
+string_literal = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+
+/// An integer.
+/// Example: 2021
+number = @{ ASCII_DIGIT+ }
+
+/// A number with the 'cc' suffix .
+/// Example: 599cc
+number_with_unit = @{ number ~ "cc" }

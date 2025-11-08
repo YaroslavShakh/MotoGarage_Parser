@@ -1,0 +1,18 @@
+
+DEFINE bike "Royal Enfield Classic 350" {
+    year: 2023,
+    engine: 349cc,
+    type: classic
+}
+
+GET BIKES WHERE type = classic
+
+DEFINE bike "Triumph Bonneville T120" {
+    year: 2022,
+    engine: 1200cc,
+    type: classic
+}
+
+GET BIKES
+GET BIKES WHERE type = sport
+COUNT BIKES WHERE engine > 2000

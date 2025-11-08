@@ -1,0 +1,9 @@
+
+DEFINE bike "Yamaha R1" { year: 2022, engine: 998cc, type: sport }
+DEFINE bike "Ducati Panigale V4" { year: 2024, engine: 1103cc, type: sport }
+DEFINE bike "BMW R1250GS" { year: 2023, engine: 1254cc, type: adventure }
+DEFINE bike "Suzuki SV650" { year: 2020, engine: 645cc, type: naked }
+
+COUNT BIKES WHERE type = adventure
+GET BIKES WHERE year > 2022
+GET BIKES WHERE engine < 1000

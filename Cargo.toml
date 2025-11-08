@@ -2,12 +2,16 @@
 name = "MotoGarage_parser"
 version = "0.1.0"
 edition = "2024"
-description = "Парсер та інтерпретатор для MotoGarage DSL, мови для керування колекціями мотоциклів."
+description = "A parser and interpreter for MotoGarage DSL, a language for managing motorcycle collections."
+license = "MIT"
+repository = "https://github.com/YaroslavShakh/MotoGarage_Parser"
 
 [dependencies]
 pest = "2.8.3"
 pest_derive = "2.8.3"
 anyhow = "1.0"
+thiserror = "2.0.17"
+clap = { version = "4.4", features = ["derive"] }
 
 [lib]
 name = "motogarage_parser"

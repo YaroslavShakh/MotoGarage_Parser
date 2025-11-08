@@ -1,0 +1,21 @@
+
+DEFINE bike "Honda CBR600RR" {
+    year: 2021,
+    engine: 599cc,
+    type: sport
+}
+
+DEFINE bike "Kawasaki Ninja 400" {
+    year: 2023,
+    engine: 399cc,
+    type: sport
+}
+
+DEFINE bike "Harley-Davidson Fat Boy 114" {
+    year: 2022,
+    engine: 1868cc,
+    type: cruiser
+}
+
+COUNT BIKES
+GET BIKES WHERE type = sport
