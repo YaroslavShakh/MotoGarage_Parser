@@ -1,3 +1,5 @@
+#![doc = include_str!("../docs.md")]
+
 use pest::Parser; 
 use pest_derive::Parser;
 use thiserror::Error; 
