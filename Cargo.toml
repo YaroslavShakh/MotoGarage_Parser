@@ -1,6 +1,6 @@
 [package]
 name = "MotoGarage_parser"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 description = "A parser and interpreter for MotoGarage DSL, a language for managing motorcycle collections."
 license = "MIT"
