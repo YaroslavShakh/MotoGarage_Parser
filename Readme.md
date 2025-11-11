@@ -3,6 +3,7 @@
 **Project Name:** motogarage_parser
 **Description:** A parser and interpreter for MotoGarage DSL, a language for managing motorcycle collections.
 **Crates.io link :** https://crates.io/crates/MotoGarage_parser
+**Docs link :** https://crates.io/crates/MotoGarage_parser
 
 ---
 ## Technical Description of the Parsing Process
@@ -148,7 +149,55 @@ number = @{ ASCII_DIGIT+ }
 /// A number with a 'cc' suffix (for engine displacement).
 /// Example: 599cc
 number_with_unit = @{ number ~ "cc" }
+
 ```
----
+# Makefile Documentation
 
+## Available Commands
 
+### Main Quality Check
+
+This is the most important command to run before committing new code.
+
+* `make check`
+    Runs the full quality-check suite. It executes `fmt`, `clippy`, and `test` all in one go.
+
+### Running the Program
+
+* `make run ARGS="..."`
+    Runs the program in **debug** mode (for development).
+    
+    **Important:** You **must** provide the `ARGS` variable to pass arguments to the program.
+
+    **Examples:**
+    ```bash
+    # Run the parser on a file
+    make run ARGS="parse my_garage1.moto"
+    
+    # Show the credits
+    make run ARGS="credits"
+    ```
+
+### Building & Testing
+
+* `make build`
+    Builds the final, optimized **release** version of the program. The executable will be located at `target/release/moto`. This is also the default command if you just run `make`.
+
+* `make test`
+    Runs all unit and integration tests in the project.
+
+### Code Quality & Formatting
+
+* `make fmt`
+    Formats all Rust code according to the project's style (using `cargo fmt`).
+
+* `make clippy`
+    Runs the Clippy linter to check for common mistakes and un-idiomatic code. This command treats all warnings as errors (`-D warnings`), forcing you to write clean code.
+
+### Documentation & Cleanup
+
+* `make doc`
+    Generates all project documentation from `///` comments (including those in `src/grammar.pest`) and automatically opens the result in your web browser.
+
+* `make clean`
+    Removes the `target` directory, deleting all build artifacts, cached dependencies, and compiled executables.
