@@ -3,7 +3,7 @@
 **Project Name:** motogarage_parser
 **Description:** A parser and interpreter for MotoGarage DSL, a language for managing motorcycle collections.
 **Crates.io link :** https://crates.io/crates/MotoGarage_parser
-**Docs link :** https://crates.io/crates/MotoGarage_parser
+**Docs link :** https://docs.rs/MotoGarage_parser/0.1.2/motogarage_parser
 
 ---
 ## Technical Description of the Parsing Process
